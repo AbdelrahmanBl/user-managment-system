@@ -61,7 +61,7 @@ class UserController extends Controller
      */
     public function show(int $id)
     {
-        $this->checkPermission($id);
+        $this->checkRole($id);
 
         $user = $this->userService->find($id);
         
@@ -89,7 +89,7 @@ class UserController extends Controller
      */
     public function edit(User $user)  
     {
-        $this->checkPermission($user->id);
+        $this->checkRole($user->id);
         $this->authorize('update' ,$user);
 
         $user  = $this->userService->find($user->id); 
@@ -118,7 +118,7 @@ class UserController extends Controller
      */
     public function update(UserRequest $request ,User $user)
     {
-        $this->checkPermission($user->id);
+        $this->checkRole($user->id);
         $this->authorize('update' ,$user);
         
         $this->userService->update($user->id ,$request->all());
@@ -169,7 +169,7 @@ class UserController extends Controller
      */
     public function upload(UserRequest $request, int $id)
     {
-        $this->checkPermission($id);
+        $this->checkRole($id);
 
         $user = $this->userService->find($id);
         $user->deleteImageIfExist();
@@ -184,7 +184,7 @@ class UserController extends Controller
      *
      * @return int|null
      */
-    public function checkPermission(int $id)  
+    public function checkRole(int $id)  
     {
         if(!auth()->user()->IsAdmin && auth()->user()->id !== $id)
             abort(401);
