@@ -6,7 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\softDeletes;
+// use Illuminate\Database\Eloquent\softDeletes;
 use Laravel\Sanctum\HasApiTokens;
 use App\Services\UserService;
 use App\Traits\ImageTrait;
@@ -14,7 +14,7 @@ use App\Traits\ImageTrait;
 
 class User  extends Authenticatable
 {
-    use HasFactory, Notifiable, softDeletes, ImageTrait ,HasApiTokens;
+    use HasFactory, Notifiable, ImageTrait ,HasApiTokens;
 
 
     /**
@@ -30,6 +30,12 @@ class User  extends Authenticatable
         'password',
     ];
 
+    /**
+     * The attribute that is about soft delete.
+     * 
+     * @var bool 
+     */
+    protected $softDelete = true;
 
 
     /**
