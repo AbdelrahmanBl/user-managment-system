@@ -6,7 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\softDeletes;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Sanctum\HasApiTokens;
 use App\Services\UserService;
 use App\Traits\ImageTrait;
@@ -14,7 +14,7 @@ use App\Traits\ImageTrait;
 
 class User  extends Authenticatable
 {
-    use HasFactory, Notifiable, softDeletes, ImageTrait ,HasApiTokens;
+    use HasFactory, Notifiable, SoftDeletes, ImageTrait ,HasApiTokens;
 
 
     /**
@@ -30,7 +30,7 @@ class User  extends Authenticatable
         'password',
     ];
 
-    protected $dates = ['deleted_at'];
+
 
     /**
      * The attributes that should be hidden for arrays.
